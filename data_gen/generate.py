@@ -100,19 +100,8 @@ def generate_mock_data():
 
             # Active subscriptions with future end dates
             if 20 <= i < 25:
-                is_active = True
                 end_date = fake.date_between(start_date='+1m', end_date='+1y')
-
-            # Active subscriptions with past dates
-            if 25 <= i < 30:
-                is_active = True
-                end_date = fake.date_between(start_date='-1m', end_date='-1d')
-
-            # Inactive subscriptions with null end dates
-            if 30 <= i < 35:
-                is_active = False
-                end_date = None
-
+    
         subscriptions.append({
             'sub_id': sub_id,
             'customer_id': c_id,
@@ -123,7 +112,7 @@ def generate_mock_data():
         })
     df_subscriptions = pd.DataFrame(subscriptions)
 
-    print("Generating Transactions (with Duplicates and DQ issues)...")
+    print("Generating Transactions ...")
     transactions = []
     
     for i in range(NUM_TRANSACTIONS):
